@@ -43,7 +43,6 @@ $message = $rowp.$txt_msg.$rowp;
 
 //====== Send email !!
 mail($to, $subject, $message, $header);
-//die("message sent")
 
 ?>
 
