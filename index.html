@@ -1,0 +1,230 @@
+<!DOCTYPE html>   
+<!-- AppReg Experiment 
+Home page with the link to launch the experiment in full screen 
+
+Experiment is defined in ar_exp.html and based on jsPsych library
+
+-----------
+
+jsPsych documentation: docs.jspsych.org
+de Leeuw, J. R. (2014). jsPsych: A JavaScript library for creating behavioral 
+experiments in a Web browser. Behavior research methods, 1-12
+test
+* CREx-BLRI-AMU
+* https://github.com/blri/Online_experiments_jsPsych
+* 2017-03-23 christelle.zielinski@blri.fr
+--> 
+
+<html lang="fr">   
+	<head>  
+		<meta charset="utf-8" />
+		
+		<meta property="og:image" content="http://onexp.lpl-aix.fr/jockog/img/fb_link_img.png" />
+		<meta property="og:description" content="Évaluer votre rapidité de frappe au clavier. Cliquez pour plus d'informations." />
+		<meta property="og:url"content="http://onexp.lpl-aix.fr/jockog/" />
+		<meta property="og:title" content="Les Jeux Olympiques du Clavier" />
+		
+		<title>JOC/KOC</title>
+		<!-- Main layout -->
+		<link rel="stylesheet" href="css/ar_home_min.css" />
+		<link rel="shortcut icon" href="img/favicon.ico">
+		
+		<!-- Detect if device is not a tablet or phone -->
+		<script src="//wurfl.io/wurfl.js">
+			// WURFL Device Detection : http://web.wurfl.io	
+		</script>
+		
+		<!-- Some jQuery methods are used to display the special div (more info + start experiment) + to forbidden access to the tablet users -->
+		<script src="js/jquery.js"></script>
+		
+		<!-- Add informations on bottom section - infotxt is return -->
+		<script src="js/ar_infos_min.js"></script>
+		
+		<!-- Define the popup window to send messages (comments + mail) -->
+		<script src="js/ar_popcom_min.js"></script> 
+		
+		<!-- Open online experiment in a full screen (S. Mathôt) cogsci.nl -->
+		<script>
+			function openfullscreen(url) {
+				newwin = window.open("", "", "scrollbars=yes")
+				newwin.moveTo(0, 0)
+				newwin.resizeTo(screen.width, screen.height)
+				newwin.location = url
+			}
+		</script>
+
+		<!-- Functions to customize scroll bars (cf. for abstracts of projects in info slide -->
+		<!-- http://manos.malihu.gr/jquery-custom-content-scroller/ -->
+		<script src="lib/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+		<link href="lib/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />		
+	</head>
+	
+	<body>
+		<!-- Logo JOC / KOG -->
+		<header>
+			<img class="kogjc_img" src="img/logo_kogjc.png"/>
+			<div id="kogjc_str">
+				<p style="margin: 0px">The <span class="blue kogjc">K</span>eyboard <span class="black kogjc">O</span>lympic <span class="red kogjc">G</span>ames</p>	
+				<p style="margin: 0px 10px">Les <span class="yellow kogjc">J</span>eux <span class="black kogjc">O</span>lympiques du <span class="green kogjc">C</span>lavier</p>
+							
+			</div>
+			<!--
+			<div id="lang_choice">Change language: <a href="ar_home_en.html">English</a> | <a href="ar_home_fr.html">Français</a></div>
+			-->
+		</header>			
+			
+		<section class="mcol-section">
+			
+			<div class="col"> 
+				<p class="shabox">Pourquoi ?</p> 
+				<p>Avec ce jeu, vous allez pouvoir mesurer votre rapidité de frappe au clavier. 
+				</p> 
+			</div>
+		
+			<div class="col"> 
+				<p class="shabox">Comment ?</p>
+				<p>Vous devez simplement et aussi rapidement que possible taper la lettre qui est présentée à l'écran.  
+				</p>				
+			</div>
+			
+			<div class="col">
+				<p class="shabox">Qui sommes-nous ?</p> 
+				<p>Ce jeu est réalisé par des chercheurs du <a target="_blank" href="http://www.cnrs.fr"> CNRS</a> et de l'<a target="_blank" href="http://www.univ-amu.fr/">Université d'Aix-Marseille</a>. 
+				</p>
+			</div>
+
+			<div class="cf"></div>
+			
+		</section>
+		
+		<section class="mcol-section">
+			<!-- More info button -->
+			<div class="col"> 
+				<div id="more_info"> <img id="more_info_key" class="more_info_disp" src="img/key_more_info_fr.png" title="Mentions légales, anonymat..."/></div>
+				<div id="contact"></div>
+			</div>
+		
+			<!-- Start button (not display if device is detected as a phone or tablet) -->
+			<div class="col"> 	
+				<div id="start"> 
+					<div id="no-start"></div>
+					<div class="start-ok">
+						<img id="startkey" src="img/key_start_fr.png" title="Commencer l'expérience"/>
+					</div>
+				</div>
+			</div>	
+
+			<!-- Logo of institutions -->
+			<div class="col">
+				<div id="banlogo">
+					<a target="_blank" href="http://www.univ-amu.fr/">
+						<img class="logo" src="img/logo_amu.png" alt="Logo AMU" title="Vers le site d'Aix-Marseille Université" /></a>
+					<a target="_blank" href="http://www.cnrs.fr/">
+						<img class="logo" src="img/logo_cnrs.png" alt="Logo CNRS" title="Vers le site du CNRS" /></a>
+					<a target="_blank" href="http://lpc.univ-amu.fr/">
+						<img class="logo" src="img/logo_lpc.png" style="height: 45px" alt="Logo LPC" title="Vers le site du Laboratoire de Psychologie Cognitive" /></a>
+						
+					<a target="_blank" href="http://www.lif.univ-mrs.fr/">
+						<img class="logo" src="img/logo_lif.png" style="height: 60px" alt="Logo LIF" title="Vers le site du Laboratoire d'Informatique Fondamentale de Marseille" /></a>
+					<a target="_blank" href="http://www.blri.fr/">
+						<img class="logo" src="img/logo_blri.png" style="height: 60px" alt="Logo BLRI" title="Vers le site du Brain & Language Research Institute" /></a>
+				</div>
+			</div>
+
+			<div class="cf"></div>			
+		</section>
+		
+		<!-- Section to display the More info page if More info button is pressed -->
+		<section id="info_legal">			
+			<div id="info_container" class="bpop_container" style="display: none;">
+				<div id="info_div" class="bpop_inside">
+				</div>
+			</div>
+		</section>
+		
+		<!-- Section to display the consent before launching the experiment page -->
+		<section id="consent">			
+			<div id="consent_container" class="bpop_container" style="display: none;">
+				<div id="consent_div" class="bpop_inside">
+					<div id="consent_text">
+						 <div id="consent_button"> 
+							<a id = "okstartlink" href="#" onclick="openfullscreen('ar_exp.html'); return false;">
+								<img id="okstart" src="img/key_start_fr.png" title="Ouvre l'expérience dans une nouvelle fenêtre"/>
+							</a> 
+						</div>
+						<div class="more_info_disp consent_moreinfo">Pour plus d'informations (anonymat, mentions légales...), cliquez <a class="important">ici</a>.</div>
+					</div>
+				</div>	
+			</div>
+		</section>
+						
+	</body>
+	
+	
+	<script>
+	
+		//------------- Forbidden the Experiment access if tablet or smartphone
+		// as detect by WURFL => the start key is not display
+		if (typeof WURFL == 'undefined') {
+			var WURFL = {
+				is_mobile: false
+			};
+		}
+		
+		document.documentElement.className += ' ' + (WURFL.is_mobile ? '' : 'no-') + 'mobile';
+		if ( WURFL.is_mobile == true ) { 
+			var pmob = document.createElement('p');
+			pmob.id = 'forbidden-access';
+			document.getElementById('no-start').appendChild(pmob);
+			var txtmob = document.createTextNode("Cette expérience n'est accessible qu'aux utilisateurs de clavier mécanique (et non tactile).");
+			pmob.appendChild(txtmob);
+			$('#startkey').css('visibility', 'hidden');
+			$('#startkey').remove();
+		}
+		
+		//------------- Add More informations section
+		// Retrieve the information html text from the get_info function launch with the script ar_infos.js
+		var infotxt = get_info();
+		var infostr = "<h1><span id='info_title'>Informations</span><a id='infoClose' class='close'></a></h1>";
+		infostr += "<div id='info_text'>" + infotxt + "</div>";
+	
+		$('#info_div').html(infostr);
+		
+		// Add customized scrollbar
+		$.mCustomScrollbar.defaults.scrollButtons.enable = true; //enable scrolling buttons by default
+		$.mCustomScrollbar.defaults.axis = "y"; //enable 2 axis scrollbars by default
+		$.mCustomScrollbar.defaults.scrollInertia = 150;
+		$("#info_text").mCustomScrollbar({theme:"dark-thin"});
+		
+		// Display the more_info div when click on it
+		$('.more_info_disp').click(function(){	
+			$("#info_container").fadeIn(500);
+			$("#infoClose").click(function(){$("#info_container").fadeOut(500)});				
+		});
+		
+		//------------- Add consent section
+		var constit = "<h1><p id='consent_title'>Consentement de participation</p><a id='consentClose' class='close'></a></h1>";
+		
+		var consentxt = "<div class='consentxt'><p>Les données que nous recueillons sont strictement anonymes.</p>"+ 
+			"<p>Vous pouvez quitter l'expérience à tout moment sans conséquence pour vous.</p>"+
+			"<p>En cliquant sur le bouton « Commencer », vous reconnaissez avoir lu, compris et accepté les conditions décrites ci-dessus.</p></div>";
+		$('#consent_div').prepend(constit);
+		$('#consent_text').prepend(consentxt);		
+		
+		// Display the consent_div div when click on start key
+		$('#startkey').click(function(){	
+			$("#consent_container").fadeIn(500);
+			$("#consentClose").click(function(){$("#consent_container").fadeOut(500)});				
+		});	
+
+		//-------------- Add the popup div for sending message
+		var $comlink = $('<div/>')
+			.attr('id', 'popcom_linkdiv')
+			.html('<a id="popcom_link">Nous contacter</a>');
+				
+		$('#contact').append($comlink);
+		popcom.init('popcom_linkdiv');
+	
+	</script>
+
+</html>

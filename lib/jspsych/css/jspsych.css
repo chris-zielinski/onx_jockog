@@ -1,0 +1,870 @@
+/* 
+ * CSS for jsPsych experiments
+ *
+ * This stylesheet provides minimal styling to make jsPsych 
+ * experiments look polished without any additional styles.
+ *
+ *
+ * jsPsych documentation: docs.jspsych.org
+ * de Leeuw, J. R. (2014). jsPsych: A JavaScript library for creating behavioral 
+ * experiments in a Web browser. Behavior research methods, 1-12
+ *
+ * ---- Layout adapted for HowFast experiment (typing):
+ *
+ * CREx-BLRI-AMU project :
+ * https://github.com/chris-zielinski/Online_experiments_jsPsych/tree/master/HowFast/typing
+ */
+/* MARGIN top right bottom left*/
+
+
+
+/*********************
+ * Font
+ *********************/
+ 
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+@font-face {
+	font-family: Inconsolata;
+	src: url("Inconsolata.ttf");
+}
+
+
+@font-face {
+	font-family: CenturyGothic;
+	src: url("CenturyGothic.ttf");
+}
+
+@font-face {
+	font-family: CenturyGothic;
+	src: url("GOTHICB.TTF");
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: CenturyGothic;
+	src: url("GOTHICI.TTF");
+	font-style: italic;
+}
+
+
+/*****************
+*   Main
+******************/
+html {
+	font-family: 'Open Sans', Arial, sans-serif;
+	font-size: 24px; 
+	/*line-height: 1em;*/	
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height : 95%;	
+}
+
+p {
+    clear:both;
+}
+
+/****************
+* Background    *
+*****************/
+.bg_og {
+	background-image: url("../../../img/bg_xv.png");
+}
+
+.bg_grey {	
+	background-color: rgb(240, 240, 240);
+	background-image: url('../../../img/bg_chars.png');
+	background-repeat: no-repeat;
+	background-position: center 180px; /*center;*/	
+}
+
+/********************
+/*  Header : logo + title  *
+*******************/
+
+header {
+ 	overflow: hidden; /*Delete top margin*/
+	margin: 20px 0 40px; /*16px 6% 45px 6%; */
+}
+
+/* Main logo (KOGJG) */
+.kogjc_img {
+	height: 90px;
+	float: left;
+}
+
+/* Header sentence */
+#kogjc_str{
+	font-family:  CenturyGothic, 'Century Gothic', 'PT Sans', Arial;
+ 	float: left; 
+	font-weight: bold;
+	width: 65%;
+	font-size: 30px;
+	padding-left: 1em; /*2rem;*/
+	margin: 5px 0 0; /* 5px 20px 0px 20px;*/
+	color: rgb(0, 68, 170); 
+	line-height: 1.4em;
+	text-align: left;
+	letter-spacing: 1px;
+}
+
+/* Color for KOGJC characters */
+.blue {	
+	color: rgb(0, 133, 199);
+}
+.black {	
+	color: rgb(0, 0, 0);
+}
+.red {	
+	color: rgb(223, 0, 36);
+}
+.yellow {	
+	color: rgb(244, 195, 0);
+}
+.green {	
+	color: rgb(0, 159, 61);
+}
+
+/*Size for KOGJC characters*/
+.kogjoc {
+	font-size: 36px;
+}
+
+
+ /* -- Container holding jsPsych content
+ */
+
+.jspsych-display-element {
+    width: 90%;
+	margin: auto;
+    padding-top: 10px;
+	text-align: center;
+}
+
+#jspsych-data-display{	
+	font-size: 16px;
+}
+
+.instructions{
+	margin-top: 10%;
+}
+/************ GLOBAL CLASS */
+/*
+ * -- Font size
+ */
+
+.small {
+    font-size: 85%;
+}
+
+.large {
+    font-size: 115%; 
+}
+
+/*
+ * -- Layout
+ */
+ 
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.center-content {
+    text-align: center;
+}
+
+/* Hide cursor */
+.hidecursor {
+	cursor: none !important;
+}
+
+/* Bold font */
+.bd {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+
+/*****************
+* GAME CHOICES page  *
+*****************/
+
+#game_intro {
+	margin-bottom: 40px;
+	margin-top: 0px;
+	text-align: center;
+	width: 100%;
+}
+#game_intro p{
+	line-height: 1.2em;
+	margin: 0.4em;
+}
+
+#game_choices{
+	min-width: 600px;
+	text-align: center;
+	max-width: 1000px;
+	margin: auto;
+}
+
+#game_sep{
+	font-size: 20px;
+	color: rgb(255, 255, 255);
+	line-height: 0px;
+	margin: 0.6em;
+}
+
+.game_div {
+	display: inline-block;
+	width: 25%;
+	text-align: center;
+	position: relative;
+}
+
+.game_button {
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 90%;
+	cursor: pointer;
+	z-index: 1;
+	
+}
+
+.game_button_mask {
+	cursor: pointer;
+	z-index: 0;
+	float: left;
+	height: 100%;
+	width: 90%;	
+}	
+
+.score_div{
+	text-align: left;
+	display: inline-block;	
+	font-size: 0.8em;
+	font-weight: 700;
+	width: 95%;  /*100%*/
+	vertical-align: middle;
+}
+
+.medal_div {
+	float: left;
+	width: 10%;
+}
+.rank_div {
+	float: left;
+	width: 90%;
+}
+.rank_div p {
+	margin-top: 0;
+	margin-bottom: 0.2em;
+	padding-left: 1.5em;
+}
+.medal {
+	height: 2.5em; /*60px;*/
+	padding-top: 0.2em;
+}
+
+/**************** 
+* Countdown    *
+***************/
+
+#countdiv {
+	display: inline-block;
+    padding-top: 15%;
+	text-align: center;
+	min-height: 200px;
+	min-width: 200px;
+	color: rgb(130, 130, 130);
+	background-image: url('../../../img/go.png');
+	background-repeat: no-repeat;
+	background-position: center 20px;
+}
+ 
+
+/**************** 
+* Feedback     *
+***************/
+
+/*-------- Main div with to display score with dotted border */
+.fb_div{
+	font-weight: 700;
+	text-align: center;
+	margin: 8% auto 30px; 
+	padding: 1.2em;
+	width: 60%;
+	border: dotted 1px;
+	border-radius: 20px; 
+	box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+	background-image: url('../../../img/bg_fb.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: auto 90%;
+}
+
+.fb_div p{
+	margin-bottom: 0.5em;
+}
+
+/* Info for penality seconds */
+.fb_info{
+	font-style: italic;
+	color: rgb(110, 110, 110);
+	line-height: 15px;
+	margin-top: 0px;
+}
+
+/* Larger font for scores */
+.fb_res {		
+	font-size: 1.2em;
+}
+
+#fb_but {
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.fb_but_div{
+	text-align: center;
+}
+
+
+/* Blue */
+.fb_col_10, .fb_col_2 {	
+	border-color: rgb(0, 133, 199);
+	/*color: */
+}
+
+/* Black */
+.fb_col_20, .fb_col_4 {	
+	border-color: rgb(0, 0, 0);
+}
+
+/* Red */
+.fb_col_50, .fb_col_6 {	
+	border-color: rgb(223, 0, 36);
+}
+
+/* Yellow */
+.fb_col_100, .fb_col_8 {	
+	border-color: rgb(244, 195, 0);
+}
+
+/* Green */
+.fb_col_200, .fb_col_9 {	
+	border-color: rgb(0, 159, 61);
+}
+
+/* Blue */
+.fb_but_10, .fb_but_2 {	
+	background-color: rgb(0, 133, 199);
+}
+
+.fb_but_20, .fb_but_4 {	
+	background-color: rgb(0, 0, 0);
+}
+
+/* Red */
+.fb_but_50, .fb_but_6 {	
+	background-color: rgb(223, 0, 36);
+}
+
+/* Yellow */
+.fb_but_100, .fb_but_8 {	
+	background-color: rgb(244, 195, 0);
+}
+
+/* Green */
+.fb_but_200, .fb_but_9 {	
+	background-color: rgb(0, 159, 61);
+}
+
+/* Blue */
+.col_game_10, .col_game_2 {	
+	color: rgb(0, 133, 199);
+	/*color: */
+}
+
+/* Black */
+.col_game_20, .col_game_4 {	
+	color: rgb(0, 0, 0);
+}
+
+/* Red */
+.col_game_50, .col_game_6 {	
+	color: rgb(223, 0, 36);
+}
+
+/* Yellow */
+.col_game_100, .col_game_8 {	
+	color: rgb(244, 195, 0);
+}
+
+/* Green */
+.col_game_200, .col_game_9 {	
+	color: rgb(0, 159, 61);
+}
+
+
+/*
+ ******* jsPsych PLUGINS *
+ */
+
+ 
+/*********************
+ *  Form elements *
+**********************/
+
+.italic {
+	font-style: italic;
+}
+.age_info {
+	font-size: 0.8em;
+	color: rgb(110, 110, 110);
+	line-height: 1.4em;
+	margin-top: -0.8em;
+}
+ /* Mouse over link */
+label:hover {
+    color: rgb(0, 133, 199);
+	background-color: rgb(240,240,240);
+}
+.form_div {
+	width: 100%;
+	/*font-size: 14px; */
+	text-align: center; /*left;*/
+	line-height: 1.2em;	
+}
+
+.form_col, .kbform_quest {
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 1em;
+	padding: 3px 0px;
+	width: 100%;
+	min-height: 1px;
+	text-align: center; 
+}
+
+/* Add bottom margin to the form preamble */
+.form_preamble {		
+	margin: 10% auto 2em auto;
+	width: 80%;
+	font-size: 115%; 
+	text-align: center;
+	line-height: 1.4em;
+}
+
+
+/* Add space between radio and labels */
+.radio_but {
+	margin-right: 0.5em;
+}
+
+.radio_lab {
+	margin-right: 1.5em;
+	text-align: left;
+	display: inline-block; /*Avoid splitting between button and label*/
+}
+
+/* Add space between checkbox and labels */
+.checkbox_lab {
+	margin-left: 4px;
+	margin-right: 10px;
+	text-align: left;
+}
+
+.checkbox_cont{
+	display: inline-block; 
+}
+
+.form_subbutton {
+	margin-top: 2.5em;
+	text-align: center;
+}
+
+.form_subbutton:hover {
+	color: rgb(0, 133, 199);
+}
+.form_fingers{
+	margin-left: 50%;
+}
+
+
+.hiderow {
+	visibility: hidden;
+}
+
+
+/* -- PLUGIN :  jspsych-form-kb-layout
+*/
+
+.kbform_div {
+	width: 100%; 
+	margin-top: 3em;
+}
+
+.kbform_row {
+	display: block;
+	width: 800px;
+	height: 200px;
+	position: relative;
+	margin: auto;
+}
+
+.kbform_rad {
+	position: absolute;
+	top: 30%;
+	left: 40px;
+}
+
+.kbform_img {
+	position: absolute;
+	width: 600px;
+	height: 200px;
+	left: 220px;
+}
+.layout_img {
+	position : absolute;
+	display: block;
+	height : 90%;
+	left : 0;
+	padding-top: 20px;
+}
+.lay_main{
+	z-index: 1;
+}
+
+.lay_msk {
+	z-index: 0;	
+}
+
+.lay_input{
+	font-size: 22px;
+	text-align: left;
+	padding-left: 0.5em;	
+}
+.lay_inpdiv {
+	position: absolute;
+	width: 600px;
+	height: 3em;
+	left: 225px;
+	top: 30%;
+}
+.lay_but{
+	margin-top: 0em;
+}
+
+/*
+ * -- PLUGIN: jspsych-char-typing
+ */
+
+#jspsych-char-stimulus {
+    display: inline-block;
+	text-align: center;
+	/*paddig-top: 30%;*/
+	padding-top: 200px;
+	font-size: 128px; 
+	font-family: Inconsolata;
+
+}
+
+.hiderow {
+	visibility: hidden;
+}
+
+
+/*
+ * -- DEBRIEF BLOCKS with feedback about scores
+ */
+
+.fb_ini_col {
+	background-color: rgb(218, 218, 218);
+}
+
+
+.fb_button {
+    display: inline-block;	
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;  	
+	-ms-border-radius:8px;  	
+	-o-border-radius: 8px;  
+	border-radius: 8px;  
+} 
+
+.fb_button span {
+    display: inline-block;
+    padding: 10px 40px 10px 40px;
+    font-size: 24px;   
+	font-weight: bold;
+	color: rgb(100, 100, 100);
+}
+
+.fb_button span:hover {
+	color: rgb(255, 255, 255); 
+	cursor: pointer;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;  	
+	-ms-border-radius:8px;  	
+	-o-border-radius: 8px;  
+}
+
+
+.button {
+    display: inline-block;	
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;  	
+	-ms-border-radius:8px;  	
+	-o-border-radius: 8px;  
+	border-radius: 8px;  
+	background-color: rgb(218, 218, 218);
+} 
+
+.button span {
+    display: inline-block;
+    padding: 10px 40px 10px 40px;
+    font-size: 24px;   
+	font-weight: bold;
+	color: rgb(100, 100, 100);
+}
+
+.button span:hover {
+	color: rgb(255, 255, 255); 
+	cursor: pointer;
+	background-color: rgb(0, 133, 199);
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;  	
+	-ms-border-radius:8px;  	
+	-o-border-radius: 8px;  
+}
+
+/***********************/
+/* All for POPCOM    */
+/**********************/
+
+#popcom_linkdiv {
+	position: absolute;
+	top: 1.5em;
+	right: 1%; /*18%;*/
+	width: 9em;
+	height: 2em;
+	font-size: 0.9em;
+	color: rgb(0, 133, 199);
+	cursor: pointer;	
+	/*background-color: rgb(244, 195, 0);*/
+	text-align: center;
+	padding-top: 0.4em;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 0px #FFF inset;
+}
+#popcom_linkdiv:hover {
+	/*font-size: 0.9em;*/
+	color: rgb(0, 68, 170); 
+	font-weight: bold;	
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 133, 199);
+}
+
+#popcom_outer {
+	position : fixed;
+	top: 40px; /*5em;*/
+	right: 10%;
+	width: 530px;	
+	height: 540px;	
+	background-color: rgba(240, 240, 240, 0.98);
+	z-index: 3;	
+	-moz-box-shadow: 1px 1px 5px 0px #656565;
+	-webkit-box-shadow: 1px 1px 5px 0px #656565;
+	-o-box-shadow: 1px 1px 5px 0px #656565;
+	box-shadow: 1px 1px 5px 0px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=5);
+	-o-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	padding: 1.2em;
+}
+
+#popcom_closediv{
+	height: 25px;
+	width: 100%;
+}
+
+#popcom_inner {
+	margin : auto;
+	width : 100%;
+	height : 100%;
+}
+
+#popcom_hdr{
+	text-align: center;
+	font-size: 20px;
+	width: 100%;
+}
+#popcom_hdr p{ 
+	margin-bottom: 0em;
+	margin-top: 0.2em;
+}
+.pop_label {
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+	margin: 1em auto 0.3em;
+	font-size: 18px;
+	font-weight: bold;
+	color: rgb(0, 133, 199);
+}
+
+.pop_input {
+	width: 90%;
+	background-color: rgb(248, 248, 248);
+	font-family: Helvetica, Arial;
+	font-size: 16px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;  	
+	-ms-border-radius:8px;  	
+	-o-border-radius: 8px;  
+	border-radius: 8px; 
+	border: 1px solid rgb(200, 200, 200);	
+	text-align: left;
+	padding: 0.5em;	
+}
+#popcom_comm {
+	height: 8em;
+}
+
+#popcom_mail {
+	height: 2em;
+	margin-bottom: 2em;
+}
+
+.pop_but {
+    display: inline-block;	
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;  	
+	-ms-border-radius:8px;  	
+	-o-border-radius: 8px;  
+	border-radius: 8px;  
+	background-color: rgb(218, 218, 218);
+} 
+
+.pop_but span {
+    display: inline-block;
+    padding: 10px 40px 10px 40px;
+    font-size: 24px;   
+	font-weight: bold;
+	color: rgb(100, 100, 100);
+}
+
+.pop_but span:hover {
+	color: rgb(255, 255, 255); 
+	cursor: pointer;
+	background-color: rgb(0, 133, 199);
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;  	
+	-ms-border-radius:8px;  	
+	-o-border-radius: 8px;  
+}
+
+.popcom_success {
+	color: rgb(0, 133, 199);
+	font-weight: bold;
+	height: 20em;
+	padding-top: 2em;
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.popcom_error {
+	color: rgb(0, 133, 199);
+	font-weight: bold;
+	height: 20em;
+	padding-top: 2em;
+	text-align: center;
+	font-size: 0.8em;
+}
+.popcom_error #popcom_resp{
+	margin-top: 0.4em;	
+}
+
+.popcom_error p{
+	margin-bottom: 0;
+}
+
+/*#popcom_rescue {
+	font-size: 14px;
+	font-weight: normal;
+	font-family: Helvetica, Arial;
+	color: rgb(42, 42, 42);
+}*/
+
+.pop_resc{
+	font-size: 16px;
+	background-color: rgb(240, 240, 240);
+	
+}
+
+#popcom_copy {
+	margin-top: 1em;
+	width: 50%;
+}
+#pop_coptxt {
+	font-size: 18px;
+	font-weight: normal;
+}
+
+.close{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  overflow: hidden;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.close::before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.close::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.close:hover::before, .close:hover::after {
+  background-color:  rgb(244, 195, 0);  
+}
+.close:hover {
+  opacity: 1;
+}
+.close::before, .close::after {
+  background-color: rgb(0, 68, 170); 
+  content: '';
+  position: absolute; 
+  top: 50%;
+  left: 0;  
+  width: 100%;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 5px; 
+}

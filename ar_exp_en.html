@@ -1,0 +1,179 @@
+<!doctype html>
+<!-- AppReg Experiment 
+Online experiment based on jsPsych javascript library 
+
+Experiment to record typing times while pressing keyboard keys as response to visual stimulation
+
+-----------
+
+jsPsych documentation: docs.jspsych.org
+de Leeuw, J. R. (2014). jsPsych: A JavaScript library for creating behavioral 
+experiments in a Web browser. Behavior research methods, 1-12
+
+* CREx-BLRI-AMU
+* https://github.com/blri/Online_experiments_jsPsych
+* 2017-03-23 christelle.zielinski@blri.fr
+--> 
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JOC/KOG</title>
+		
+		<!-- CSS for the experiment -->
+		<link href="lib/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+		<link rel="shortcut icon" href="img/favicon.ico">
+		
+		<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+		<!-- jsPsych as well as the experiment addons use jQuery function -->
+		<script src="js/jquery.js"></script>
+
+		<!-- spy to send JavaScript errors when occurs on user's browser  
+		Simply set your email in the file jserrorhandler.php in the project directory 
+		AND uncomment the following line containing: $(document).jsErrorHandler();-->
+		<script src="js/jquery.onerror.js"></script>
+		<script>
+			$(document).jsErrorHandler();  
+		</script>
+		
+		<!-- polyfill.io holds the polyfills (javascript functions that could be missing to older browsers) -->
+		<!-- List of required methods : Array.prototype.reduce,Array.isArray,Array.prototype.indexOf,Object.keys,performance.now -->
+		<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.reduce,Array.isArray,Array.prototype.indexOf,Object.keys,performance.now"></script>
+		
+		
+		<!-- ajaxqueue used to force ajax calls to be done successively  -->
+		<script src="js/ajaxqueue.js"></script>
+		
+		<!-- Tool to get OS/browser informations 
+		Work only when experiment is online (on a server)
+		Add the path of the WhichBrowser library inside the whichbro.js script -->
+		<script src="js/whichbro.js"></script> 
+		
+		<!-- Define the stimuli lists -->
+		<script src="js/ar_stimlist_min.js"></script> 	
+		
+		<!-- Very Special Methods around this experiment -->
+		<script src="js/ar_addon_min.js"></script> 
+		
+		<!-- Define the popup window to send messages (comments + mail) -->
+		<script src="js/ar_popcom_min.js"></script> 
+		
+		<!-- jsPsych core & plugings + CSS -->		
+		<script src="lib/jspsych/jspsych_min.js"></script>
+		<!-- Additionnal jsPsych functions for our online experiments -->
+		<script src="lib/jspsych/jspsych_addons_min.js"></script> 
+		<!-- Plugin for edge browser to ask for manual full screen resize -->
+		<script src="lib/jspsych/plugins/jspsych-resize_min.js"></script>
+		<!-- Plugin for instruction screen -->
+		<script src="lib/jspsych/plugins/jspsych-text_min.js"></script>
+		<!-- Plugin for displaying survey -->
+		<script src="lib/jspsych/plugins/jspsych-form_min.js"></script>
+		<!-- Plugin for form page about keyboard layout -->
+		<script src="lib/jspsych/plugins/jspsych-form-kb-layout_min.js"></script>
+		<!-- Plugin to display the countdown -->
+		<script src="lib/jspsych/plugins/jspsych-countdown_min.js"></script>
+		<!-- Plugin for char copy task -->
+		<script src="lib/jspsych/plugins/jspsych-char-typing_min.js"></script>
+		
+		<script>
+			// Reduce font-size if screen resolution is low
+			var hs = $( window ).height();
+			if (hs < 800){
+				$("html").css('font-size', '20px');
+			}
+		</script>
+
+	</head>
+	
+	<body>
+	
+	</body>
+
+	<script>
+	  
+		/** -----------
+		* Very Important Parameters */
+		
+		var isdemo =  false; //false; // true or false
+		// In demo mode (isdemo = true), the number of characters to copy in the typing task are reduced
+		
+		/** ----- 
+		* Fixed parameters */
+		
+		// subjID will be add in the database - based on the exact date when user was starting the experiment
+		var subjID = jsPsych.getSubjectID();
+		var subjinfo = getBrowserInfos();
+
+
+		// Countdown page after instructions
+		var count_block = {
+			type: 'countdown',
+			ncount: 3,
+			interval_ms: 950
+		};
+		
+		
+		/**--------
+		 * Define TYPING BLOCKS : instruction, countdown and char-typing task */
+
+		var init_jspsych = function(nch){
+			// Instructions 
+			var inst_block = arExp.char_instr(nch);
+			
+			var char_block = arExp.char_block(stimlist, nch);
+			// Keep game info to add in database column 'game'
+			var gameinfo = "game_" + nch + '_' + char_block.id_list;
+			
+			var experiment = [inst_block, count_block, char_block]; 
+			
+			/** Initialize jsPsych timeline */
+
+			jsPsych.init({
+				timeline: experiment,
+				on_finish: function(){	
+						// Get all jsPsych data
+						var alldata = jsPsych.data.getData();	
+					
+						// Save the data 		
+						$.ajaxQueue(arExp.save_data(subjID, subjinfo, gameinfo, alldata));
+						
+						// Save, get the score, draw feed_back page
+						// and draw mean page
+
+						arExp.final_sequence(init_jspsych); // return the feedback page
+						
+					}
+			}); 	
+		};
+		
+		//--------- Experiment structure ---------
+		// a) Check if full screen with initFullScreen method from arExp object
+		// b) Execute after_resize function => ask for additionnal subject's informations
+		// c) Draw the mean game choice page
+		// d) Execute init_jspsych function to launch the game with the specific character numbers,
+		// to save the data and display the feedback
+		// Loop on (c) and (d) until the subject exits
+		
+		// Draw mean page with game choices, execute the task block with init_jspsych function		
+		var launch_game = function(){
+			arExp.draw_mean_page(init_jspsych);
+		};
+		
+		// Get additionnal subject's info (age + keyboard layout)
+		var after_resize = function(){
+			// Try again to get subjinfo global variable if WhichBrowser wasn't load yet
+			subjinfo = getBrowserInfos();
+			// Additional info will be added to the subjinfo string
+			arExp.additionalInfo(launch_game);
+		};
+		
+		/**-------
+		* GO ! */
+		arExp.initFullScreen(after_resize);
+	</script> 
+
+</html>
