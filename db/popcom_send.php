@@ -9,8 +9,8 @@
 
 //====== Parameters
 // Destination
-$to = "christelle.zielinski@blri.fr"; 
-$from = "AppReg <www-data@blri.fr>";
+$to = "...@..."; 
+$from = "... <www-data@...>";
 // Message subject
 $subject = "Jockg | Comments";
 // Line transition
