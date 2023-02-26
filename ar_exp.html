@@ -51,7 +51,7 @@ experiments in a Web browser. Behavior research methods, 1-12
 		<!-- Tool to get OS/browser informations 
 		Work only when experiment is online (on a server)
 		Add the path of the WhichBrowser library inside the whichbro.js script -->
-		<script src="js/whichbro.js"></script> 
+		<!-- <script src="js/whichbro.js"></script>  -->
 		
 		<!-- Define the stimuli lists -->
 		<script src="js/ar_stimlist_min.js"></script> 	
@@ -106,7 +106,7 @@ experiments in a Web browser. Behavior research methods, 1-12
 		
 		// subjID will be add in the database - based on the exact date when user was starting the experiment
 		var subjID = jsPsych.getSubjectID();
-		var subjinfo = getBrowserInfos();
+		var subjinfo = 'demo'; //getBrowserInfos();
 
 
 		// Countdown page after instructions
